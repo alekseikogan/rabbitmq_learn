@@ -2,7 +2,7 @@ import logging
 
 import pika
 
-RMQ_HOST = '0.0.0.0'
+RMQ_HOST = 'localhost'
 RMQ_PORT = 5672
 RMQ_USER = 'guest'
 RMQ_PASSWORD = 'guest'
