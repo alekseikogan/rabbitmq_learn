@@ -20,7 +20,7 @@ def get_connection() -> pika.BlockingConnection:
     )
 
 
-def configure_logging(level=logging.INFO):
+def configure_logging(level=logging.DEBUG):
     logging.basicConfig(
         level=level,
         format='%(asctime)s - %(funcName)s - %(module)s - %(levelname)s - %(message)s',
