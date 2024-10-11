@@ -1,15 +1,20 @@
 import logging
-from config import get_connection, configure_logging
+
+from config import (MQ_EXCHANGE, MQ_ROUTING_KEY, configure_logging,
+                    get_connection)
 
 log = logging.getLogger(__name__)
 
 
 def produce_message(channel):
-    message_body = 'Hello world!'
-    log.debug('Отправка сообщения... !', message_body)
+
+    queue = channel.queue_declare(queue=MQ_ROUTING_KEY)
+    log.info(f'Очередь создана... {MQ_ROUTING_KEY} {queue}')
+    message_body = 'Hello world'
+    log.info('Отправка сообщения... !', message_body)
     channel.basic_publish(
-        exchange='',
-        routing_key='hello',
+        exchange=MQ_EXCHANGE,
+        routing_key=MQ_ROUTING_KEY,
         body='Hello world!'
     )
     log.warning('Сообщение опубликовано!', message_body)
